@@ -3,35 +3,26 @@ import React from "react";
 class Game extends React.Component {
   constructor(props) {
     super(props);
+
+    this.interval = 100;
+
     this.state = {
       gameRunning: false,
-      interval: 100,
       dummy: 0
     };
   }
 
-  changeInterval = event => {
-    if (!this.state.gameRunning) {
-      this.setState({
-        interval: event.target.value
-      });
-    }
-  };
-
   startGame = () => {
-    if (!this.state.gameRunning) {
-      this.setState(
-        {
-          gameRunning: true
-        },
-        () => {
-          this.intervalRef = setInterval(
-            () => this.runGame(),
-            this.state.interval
-          );
-        }
-      );
-    }
+    if (this.state.gameRunning) return;
+
+    this.setState(
+      {
+        gameRunning: true
+      },
+      () => {
+        this.intervalRef = setInterval(() => this.runGame(), this.interval);
+      }
+    );
   };
 
   stopGame = () => {
@@ -40,9 +31,7 @@ class Game extends React.Component {
         gameRunning: false
       },
       () => {
-        if (this.intervalRef) {
-          clearInterval(this.intervalRef);
-        }
+        if (this.intervalRef) clearInterval(this.intervalRef);
       }
     );
   };
