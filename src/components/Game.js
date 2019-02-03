@@ -20,7 +20,7 @@ class Game extends React.Component {
         gameRunning: true
       },
       () => {
-        this.intervalRef = setInterval(() => this.runGame(), this.interval);
+        this.intervalRef = setInterval(() => this.update(), this.interval);
       }
     );
   };
@@ -36,7 +36,7 @@ class Game extends React.Component {
     );
   };
 
-  runGame = () => {
+  update = () => {
     this.setState({
       dummy: this.state.dummy + 1
     });
