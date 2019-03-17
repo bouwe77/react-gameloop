@@ -4,7 +4,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
 
-    this.interval = 100;
+    this.interval = 60;
 
     this.state = {
       gameRunning: false,
